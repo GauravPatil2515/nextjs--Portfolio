@@ -1,16 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IoCopyOutline } from "react-icons/io5";
-
-// Also install this npm i --save-dev @types/react-lottie
-import Lottie from "react-lottie";
+import dynamic from "next/dynamic";
 
 import { cn } from "@/lib/utils";
-
 
 import { BackgroundGradientAnimation } from "./GradientBg";
 import GridGlobe from "./GridGlobe";
 import animationData from "@/data/confetti.json";
 import MagicButton from "../MagicButton";
+
+// Dynamic import for Lottie to avoid SSR issues
+const Lottie = dynamic(() => import("react-lottie"), {
+  ssr: false,
+  loading: () => <div className="w-[400px] h-[200px]"></div>
+});
 
 export const BentoGrid = ({
   className,
@@ -52,10 +55,15 @@ export const BentoGridItem = ({
   titleClassName?: string;
   spareImg?: string;
 }) => {
-  const leftLists = ["ReactJS", "Express", "Typescript"];
-  const rightLists = ["VueJS", "NuxtJS", "GraphQL"];
+  const leftLists = ["Python", "TensorFlow", "PyTorch", "OpenCV", "YOLOv8"];
+  const rightLists = ["TensorFlow", "PyTorch", "OpenCV", "Scikit-learn", "Python"];
 
   const [copied, setCopied] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const defaultOptions = {
     loop: copied,
@@ -67,7 +75,7 @@ export const BentoGridItem = ({
   };
 
   const handleCopy = () => {
-    const text = "hsu@jsmastery.pro";
+    const text = "gauravpatil2516@gmail.com";
     navigator.clipboard.writeText(text);
     setCopied(true);
   };
@@ -179,8 +187,9 @@ export const BentoGridItem = ({
                 className={`absolute -bottom-5 right-0 ${copied ? "block" : "block"
                   }`}
               >
-                {/* <img src="/confetti.gif" alt="confetti" /> */}
-                <Lottie options={defaultOptions} height={200} width={400} />
+                {isClient && (
+                  <Lottie options={defaultOptions} height={200} width={400} />
+                )}
               </div>
 
               <MagicButton

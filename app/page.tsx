@@ -9,6 +9,7 @@ import Clients from "@/components/Clients";
 import Approach from "@/components/Approach";
 import Experience from "@/components/Experience";
 import RecentProjects from "@/components/RecentProjects";
+import About from "@/components/About";
 import { FloatingNav } from "@/components/ui/FloatingNavbar";
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
       <div className="max-w-7xl w-full">
         <FloatingNav navItems={navItems} />
         <Hero />
+        <About />
         <Grid />
         <RecentProjects />
         <Clients />
