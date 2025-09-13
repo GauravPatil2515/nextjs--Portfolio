@@ -74,7 +74,7 @@ const FAQ = () => {
             </span>
           </h1>
           <p className="text-white-100 text-lg md:text-xl max-w-2xl mx-auto">
-            Common questions about my services, expertise, and approach to AI/ML projects
+            Common questions about my services, expertise, and approach to AI/ML projects.
           </p>
         </motion.div>
 

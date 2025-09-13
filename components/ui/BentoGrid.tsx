@@ -10,7 +10,7 @@ import animationData from "@/data/confetti.json";
 import MagicButton from "../MagicButton";
 
 // Dynamic import for Lottie to avoid SSR issues
-const Lottie = dynamic(() => import("react-lottie"), {
+const Lottie = dynamic(() => import("lottie-react"), {
   ssr: false,
   loading: () => <div className="w-[400px] h-[200px]"></div>
 });
@@ -64,15 +64,6 @@ export const BentoGridItem = ({
   useEffect(() => {
     setIsClient(true);
   }, []);
-
-  const defaultOptions = {
-    loop: copied,
-    autoplay: copied,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
 
   const handleCopy = () => {
     const text = "gauravpatil2516@gmail.com";
@@ -188,7 +179,12 @@ export const BentoGridItem = ({
                   }`}
               >
                 {isClient && (
-                  <Lottie options={defaultOptions} height={200} width={400} />
+                  <Lottie 
+                    animationData={animationData}
+                    loop={copied}
+                    autoplay={copied}
+                    style={{ height: 200, width: 400 }}
+                  />
                 )}
               </div>
 
